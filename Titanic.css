@@ -1,0 +1,98 @@
+/* ============================================================
+   Titanic.css
+
+   Additions to KLO.css for the Titanic pages, which have far more
+   photographs than the software pages. KLO.css (from KLO-Software)
+   supplies the fonts, colours, headings, links, tables and the
+   light/dark theme; this file only adds the picture layouts, with
+   their own light and dark colours to match.
+
+   Used by every page in KLO-Titanic, after ../KLO-Software/KLO.css.
+   ============================================================ */
+
+/* ---------- Captioned photographs ----------
+   <figure class="photo center|left|right" style="width: NNNpx">
+   The inline width is the size the picture was shown at on the old
+   WordPress site; max-width stops it overflowing a narrow window. */
+figure.photo {
+    margin: 1em auto;
+    max-width: 100%;
+    box-sizing: border-box;
+}
+figure.photo img {
+    display: block;
+    width: 100%;
+    height: auto;
+    border: 1px solid #ccc;
+}
+figure.photo figcaption {
+    font-size: 9pt;
+    color: #666;
+    margin-top: 0.3em;
+    line-height: 1.4;
+}
+figure.photo.left  { float: left;  clear: left;  max-width: 48%; margin: 0.4em 1.2em 0.8em 0; }
+figure.photo.right { float: right; clear: right; max-width: 48%; margin: 0.4em 0 0.8em 1.2em; }
+
+/* ---------- Pictures without captions ---------- */
+img.inline-photo { max-width: 100%; height: auto; }
+img.inline-photo.left   { float: left;  margin: 0.3em 1em 0.6em 0; max-width: 48%; }
+img.inline-photo.right  { float: right; margin: 0.3em 0 0.6em 1em; max-width: 48%; }
+img.inline-photo.center { display: block; margin: 1em auto; }
+
+/* Rounded corners, done by the browser rather than in the picture file: a
+   JPEG can't have transparent corners, so rounding the file itself would
+   leave coloured corners that show against the dark theme. */
+img.rounded { border-radius: 12px; }
+
+/* ---------- Picture grids (were WordPress tiled galleries) ----------
+   CSS columns rather than a grid, so each photograph keeps its own
+   shape, portrait or landscape, and nothing is cropped. Each picture
+   links to the full-size file. */
+.photo-grid {
+    columns: 3 200px;
+    column-gap: 8px;
+    margin: 1em 0;
+}
+.photo-grid a {
+    display: block;
+    margin-bottom: 8px;
+    break-inside: avoid;
+}
+.photo-grid img {
+    display: block;
+    width: 100%;
+    height: auto;
+    border: 1px solid #ccc;
+}
+
+/* Headings start below any floated picture before them */
+h2, h3 { clear: both; }
+
+/* The copyright line at the foot of each page */
+.page-footer { font-size: 9pt; color: #666; }
+
+/* On a phone, floated pictures go full width rather than squeezing the text */
+@media (max-width: 700px) {
+    figure.photo.left, figure.photo.right,
+    img.inline-photo.left, img.inline-photo.right {
+        float: none;
+        max-width: 100%;
+        margin: 1em auto;
+    }
+}
+
+/* ---------- Dark theme ----------
+   The same three cases as KLO.css: dark chosen with the switch, or
+   "automatic" (no choice made) while the system is in dark mode. */
+body.theme-dark figure.photo figcaption,
+body.theme-dark .page-footer { color: #8b949e; }
+body.theme-dark figure.photo img,
+body.theme-dark .photo-grid img { border-color: #30363d; }
+
+@media (prefers-color-scheme: dark) {
+    body:not(.theme-light):not(.theme-dark) figure.photo figcaption,
+    body:not(.theme-light):not(.theme-dark) .page-footer { color: #8b949e; }
+    body:not(.theme-light):not(.theme-dark) figure.photo img,
+    body:not(.theme-light):not(.theme-dark) .photo-grid img { border-color: #30363d; }
+}

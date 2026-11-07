@@ -1,0 +1,6 @@
+# KLO-Titanic .gitignore
+
+# The scripts that converted the old WordPress Titanic pages into this site
+# (6 November 2026). Kept on disk for re-converting if the WordPress pages
+# change, but not published: they are tools, not part of the web pages.
+MigrationScripts/
